@@ -4,6 +4,8 @@ import { checkOut, payment } from "@/apis/order.api";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
+import { useState } from "react";
+import Loading from "@/app/loading";
 
 const BookCard = ({
   bookTitle,
@@ -13,10 +15,13 @@ const BookCard = ({
   typeButton = "checkout",
 }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleCheckout = async ({ bookId, bookPrice }) => {
     try {
+      setLoading(true);
       const checkOutInfo = await checkOut({ bookId, bookPrice });
+      setLoading(false);
       localStorage.setItem("checkOutInfo", JSON.stringify(checkOutInfo));
       router.push("/checkout");
     } catch (error) {
@@ -26,12 +31,13 @@ const BookCard = ({
 
   const handlePayment = async ({ bookId, bookPrice }) => {
     try {
+      setLoading(true);
       const paymentInfo = await payment({ bookId, bookPrice });
       localStorage.setItem(
         "orderId",
         JSON.stringify(paymentInfo?.orderInfo?._id)
       );
-
+      setLoading(false);
       router.push(paymentInfo?.paymentLink?.checkoutUrl);
     } catch (error) {
       console.error(error);
@@ -72,6 +78,7 @@ const BookCard = ({
           handleOnClick={matchButton[typeButton].handleOnClick}
         />
       </div>
+      {loading && <Loading />}
     </div>
   );
 };
