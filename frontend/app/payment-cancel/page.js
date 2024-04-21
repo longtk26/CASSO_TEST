@@ -3,18 +3,32 @@
 import { updateOrderStatus } from "@/apis/order.api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 const PaymentCancel = () => {
   const [orderCode, setOrderCode] = useState(null);
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const orderId = localStorage.getItem("orderId");
 
     if (orderId) {
-      updateOrderStatus({ orderId }).then((res) => {
-        setOrderCode(res?.order_code);
-        localStorage.clear();
-      });
+      const fetchOrder = async () => {
+        try {
+          if (orderId) {
+            setLoading(true);
+            const order = await updateOrderStatus({ orderId });
+            setOrderCode(order?.order_code);
+            localStorage.clear();
+            setLoading(false);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchOrder();
     }
   }, []);
 
@@ -30,6 +44,7 @@ const PaymentCancel = () => {
       <Link href={"/"} className="mt-10 text-center font-bold block">
         Trở lại trang chủ
       </Link>
+      {loading && <Loading />}
     </div>
   );
 };

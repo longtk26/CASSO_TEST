@@ -3,18 +3,22 @@
 import { checkOrderPaid } from "@/apis/order.api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 const PaymentSuccess = () => {
   const [link, setLink] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const orderId = localStorage.getItem("orderId");
     const fetchOrder = async () => {
       try {
         if (orderId) {
+          setLoading(true);
           const order = await checkOrderPaid({ orderId });
           setLink(order);
           localStorage.clear();
+          setLoading(false);
         }
       } catch (error) {
         console.error(error);
@@ -49,6 +53,7 @@ const PaymentSuccess = () => {
       <Link href={"/"} className="mt-10 text-center font-bold block">
         Trở lại trang chủ
       </Link>
+      {loading && <Loading />}
     </div>
   );
 };
