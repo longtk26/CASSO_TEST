@@ -8,7 +8,7 @@ const {
 
 const envDatabase = {
     dev: `mongodb://${host}:${port}/${name}`,
-    pro: ``,
+    pro: `mongodb+srv://${host}/${name}?retryWrites=true&w=majority&appName=Cluster0`,
 };
 
 const connectString = envDatabase[process.env.NODE_ENV];
