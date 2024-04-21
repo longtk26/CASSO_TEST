@@ -43,6 +43,18 @@ class OrderController {
             statusCode: 200,
         }).send(res);
     }
+
+    async updateOrderStatus(req, res) {
+        const data = await PayOsService.updateOrderStatus({
+            orderId: req.params.orderId,
+        });
+
+        return new SuccessResponse({
+            message: "Order updated successfully",
+            metadata: data,
+            statusCode: 200,
+        }).send(res);
+    }
 }
 
 export default new OrderController();

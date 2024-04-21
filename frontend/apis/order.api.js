@@ -36,4 +36,11 @@ const checkOrderPaid = async ({ orderId }) => {
     return res?.data?.metadata;
 };
 
-export { checkOut, payment, checkOrderPaid };
+const updateOrderStatus = async ({ orderId }) => {
+    const res = await axios.patch(`${SERVER_URL}/order/${JSON.parse(orderId)}`);
+    if (res?.data?.status !== 200) throw new Error(res?.data?.message);
+
+    return res?.data?.metadata;
+};
+
+export { checkOut, payment, checkOrderPaid, updateOrderStatus };

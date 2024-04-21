@@ -54,7 +54,7 @@ class PayOsService {
         const updateOrder = await OrderModel.findOneAndUpdate(
             { order_code: paymentInfo.data.orderCode },
             {
-                order_status: "paid",
+                order_status: "PAID",
             },
             {
                 upsert: true,
@@ -68,7 +68,7 @@ class PayOsService {
         const order = await OrderModel.findOne({ _id: order_id });
         if (!order) throw new ErrorResponse("Order not found", 404);
 
-        if (order.order_status !== "paid")
+        if (order.order_status !== "PAID")
             throw new ErrorResponse("Order not paid", 400);
 
         const foundBook = await BookModel.findOne({ _id: order.order_bookId });
@@ -80,6 +80,31 @@ class PayOsService {
             );
 
         return foundBook;
+    }
+
+    static async updateOrderStatus({ orderId }) {
+        const foundOrder = await OrderModel.findOne({ _id: orderId });
+        if (!foundOrder) throw new ErrorResponse("Order not found", 404);
+
+        const statusOrder = await payos.getPaymentLinkInformation(
+            foundOrder.order_code
+        );
+        if (!statusOrder) throw new ErrorResponse("PayOS order not found", 404);
+
+        const order = await OrderModel.findOneAndUpdate(
+            {
+                order_code: foundOrder.order_code,
+            },
+            {
+                order_status: statusOrder.status,
+            },
+            {
+                upsert: true,
+                new: true,
+            }
+        );
+
+        return order;
     }
 }
 
