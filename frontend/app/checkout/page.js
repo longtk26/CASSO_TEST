@@ -7,7 +7,9 @@ const CheckOut = () => {
   const [checkOutInfo, setCheckOutInfo] = useState(null);
 
   useEffect(() => {
-    setCheckOutInfo(JSON.parse(localStorage.getItem("checkOutInfo")));
+    if (typeof window !== undefined) {
+      setCheckOutInfo(JSON.parse(localStorage.getItem("checkOutInfo")));
+    }
   }, []);
 
   return (
