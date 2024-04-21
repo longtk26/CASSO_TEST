@@ -1,9 +1,10 @@
 import SuccessResponse from "../core/success.response.js";
+import OrderService from "../services/order.service.js";
 import PayOsService from "../services/payOS.service.js";
 
 class OrderController {
     async checkOut(req, res) {
-        const data = await PayOsService.checkOut(req.body);
+        const data = await OrderService.checkOut(req.body);
 
         return new SuccessResponse({
             message: "Order checkout successfully",
@@ -32,8 +33,8 @@ class OrderController {
         }).send(res);
     }
 
-    async checkPayment(req, res) {
-        const data = await PayOsService.checkPayment({
+    async checkOrderPaid(req, res) {
+        const data = await OrderService.checkOrderPaid({
             order_id: req.params.orderId,
         });
 
@@ -45,7 +46,7 @@ class OrderController {
     }
 
     async updateOrderStatus(req, res) {
-        const data = await PayOsService.updateOrderStatus({
+        const data = await OrderService.updateOrderStatus({
             orderId: req.params.orderId,
         });
 

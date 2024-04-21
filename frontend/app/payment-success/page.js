@@ -39,6 +39,10 @@ const PaymentSuccess = () => {
             >
               Click vào đây để tải sách
             </Link>
+            <p className="text-red-500 text-center">
+              Lưu ý: Link sẽ mất khi bạn reload lại trang vì vậy hãy download
+              sách ngay khi thấy link tải nhé!
+            </p>
           </div>
         </section>
       )}

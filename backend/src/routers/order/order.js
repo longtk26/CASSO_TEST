@@ -11,7 +11,7 @@ orderRoute.post("/payment-hook", asyncHandler(orderController.paymentHook));
 
 orderRoute.get(
     "/check-payment/:orderId",
-    asyncHandler(orderController.checkPayment)
+    asyncHandler(orderController.checkOrderPaid)
 );
 
 orderRoute.patch("/:orderId", asyncHandler(orderController.updateOrderStatus));
