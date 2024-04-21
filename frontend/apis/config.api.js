@@ -1,1 +1,3 @@
-export const SERVER_URL = "https://7ea1-116-111-184-90.ngrok-free.app/v1/api";
+export const SERVER_URL = "https://casso-test.onrender.com/v1/api";
+export const SUCCESS_URL = "http://localhost:3000/payment-success";
+export const CANCEL_URL = "http://localhost:3000/payment-cancel";
