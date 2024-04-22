@@ -40,7 +40,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## Image
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -50,8 +50,9 @@
     -   [![Next][Next.js]][Next-url]
     -   [![React][React.js]][React-url]
 -   Backend:
-    -   [![Next][Next.js]][Next-url]
-    -   [![React][React.js]][React-url]
+    -   [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white)](#)
+    -   [![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#)
+    -   [![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#)
 
 <!-- GETTING STARTED -->
 
