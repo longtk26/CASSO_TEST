@@ -66,7 +66,7 @@ const BookCard = ({
         />
       </div>
       <div className="space-y-4 w-[30%]">
-        <h3 className="font-bold text-2xl">{bookTitle ?? ""}</h3>
+        <h3 className="font-bold text-xl md:text-2xl">{bookTitle ?? ""}</h3>
 
         <div>
           <p className="font-bold flex justify-between items-center">

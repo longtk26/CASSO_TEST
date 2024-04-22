@@ -9,7 +9,7 @@ const Ebooks = async () => {
       <h2 className="mb-20 text-center text-2xl uppercase font-bold text-primary">
         Ebooks
       </h2>
-      <section className="flex">
+      <section className="flex px-4 lg:px-0">
         <div className="max-w-6xl flex flex-col justify-center grow mx-auto space-y-4">
           {books.map((book) => (
             <BookCard
