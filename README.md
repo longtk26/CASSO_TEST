@@ -36,7 +36,9 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
+## Note
+
+-   Server is deployed on <a href="https://render.com/">Render</a> platform with free instance. Because of this, the first request to the server may take longer than 40 seconds.
 
 <!-- ABOUT THE PROJECT -->
 
